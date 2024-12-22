@@ -74,7 +74,7 @@ def analyze_text_vs_db_titles(text: str, threshold: float = 0.77):
     # (5) 상위 5개 중 threshold 이상만
     top_5 = results[:5]
     final_list = []
-    for (sim, _id, _title) in top_5:
+    for (sim, _id, _title,_content) in top_5:
         if sim >= threshold:
             final_list.append({"id": _id, "title": _title,"content":_content})
 
