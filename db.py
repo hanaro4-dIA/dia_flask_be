@@ -13,11 +13,11 @@ def get_keywords_from_db():
     cursor = connection.cursor()
 
     #쿼리
-    query = "SELECT id, title FROM keyword"
+    query = "SELECT id, title, content FROM keyword"
     cursor.execute(query)
     db_results = cursor.fetchall()
     results = [
-        {"id": row[0], "title": row[1]}
+        {"id": row[0], "title": row[1], "content": row[2]}
         for row in db_results
     ]
     cursor.close()
