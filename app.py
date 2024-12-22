@@ -20,7 +20,7 @@ def extract_keywords():
     results = analyze_text_vs_db_titles(text_input, threshold=0.66)
     
     # 리스트를 jsonify하면 JSON 배열로 응답
-    return jsonify({"responseFlaskKeywordDTOList": results})
+    return jsonify({"responseKeywordDTOList": results})
 
 if __name__ == "__main__":
     # Windows 멀티프로세싱 오류 방지: 여기서 모델 초기화
