@@ -62,25 +62,25 @@ def analyze_text_vs_db_titles(text: str, threshold: float = 0.77):
     for item in db_items:
         title_emb = get_whole_embedding(item["title"])
         sim = cosine_similarity(text_emb, title_emb)[0][0]
-        results.append((sim, item["id"], item["title"]))
+        results.append((sim, item["id"], item["title"],item["content"]))
 
     # (4) 내림차순 정렬
     results.sort(key=lambda x: x[0], reverse=True)
 
     print("\n[DEBUG] Similarities (top 10 shown):")
-    for i, (sim, _id, _title) in enumerate(results[:10], start=1):
-        print(f"  {i}. sim={sim:.4f}, id={_id}, title='{_title}'")
+    for i, (sim, _id, _title, _content) in enumerate(results[:10], start=1):
+        print(f"  {i}. sim={sim:.4f}, id={_id}, title='{_title}',content='{_content}'")
 
     # (5) 상위 5개 중 threshold 이상만
     top_5 = results[:5]
     final_list = []
-    for (sim, _id, _title) in top_5:
+    for (sim, _id, _title,_content) in top_5:
         if sim >= threshold:
-            final_list.append({"id": _id, "title": _title})
+            final_list.append({"id": _id, "title": _title,"content":_content})
 
     print("\n[DEBUG] Final top 5 with threshold check:")
     for item in top_5:
-        print(f"  sim={item[0]:.4f}, id={item[1]}, title='{item[2]}' - "
+        print(f"  sim={item[0]:.4f}, id={item[1]}, title='{item[2]}', content='{item[3]}' - "
               f"{'PASS' if item[0] >= threshold else 'FAIL'}")
 
     print("\n[DEBUG] Final matched list:", final_list)
