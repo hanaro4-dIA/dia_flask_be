@@ -1,0 +1,4 @@
+# Python 캐시 디렉토리
+__pycache__/
+*.py[cod]
+*$py.class
