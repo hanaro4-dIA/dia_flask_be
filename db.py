@@ -1,6 +1,7 @@
 import mysql.connector
 
 def get_keywords_from_db():
+    print("들어옴");
     #MySql 연결
     connection = mysql.connector.connect(
         host='seochodb.cnisi2wyicv7.ap-northeast-2.rds.amazonaws.com',
@@ -9,7 +10,7 @@ def get_keywords_from_db():
         password='dia1234',
         database='dIAdb'
     )
-    
+    print(connection);
     cursor = connection.cursor()
 
     #쿼리
@@ -17,11 +18,13 @@ def get_keywords_from_db():
     cursor.execute(query)
     db_results = cursor.fetchall()
     results = [
-        {"id": row[0], "title": row[1], "content": row[2]}
-        for row in db_results
+            {"id": row[0], "title": row[1], "content": row[2]}
+            for row in db_results
     ]
     cursor.close()
     connection.close()
-    
+    print(query);
+    print("잘됨");
+    print(results);
     # {"id": ..., "title": ...} 형태로 반환
     return results
