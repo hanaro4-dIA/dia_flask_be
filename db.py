@@ -3,11 +3,11 @@ import mysql.connector
 def get_keywords_from_db():
     #MySql 연결
     connection = mysql.connector.connect(
-        host='localhost',
+        host='seochodb.cnisi2wyicv7.ap-northeast-2.rds.amazonaws.com',
         port='3306',
-        user='root',
-        password='1234',
-        database='diadb'
+        user='dia',
+        password='dia1234',
+        database='dIAdb'
     )
     
     cursor = connection.cursor()
