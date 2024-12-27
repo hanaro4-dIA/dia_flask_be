@@ -1,7 +1,6 @@
 import mysql.connector
 
 def get_keywords_from_db():
-    print("들어옴");
     #MySql 연결
   
     connection = mysql.connector.connect(
@@ -11,7 +10,6 @@ def get_keywords_from_db():
         password='dia1234',
         database='dIAdb'
     )
-    print(connection);
     cursor = connection.cursor()
 
     #쿼리
@@ -24,10 +22,8 @@ def get_keywords_from_db():
     ]
     cursor.close()
     connection.close()
-    print(query);
-    print("잘됨");
-    print(results);
     # {"id": ..., "title": ...} 형태로 반환
+    print("[DEBUG] Keywords obtained from journal_keyword.")
     return results
 
 def save_journal_keywords(keywords, journal_id, customer_id):
